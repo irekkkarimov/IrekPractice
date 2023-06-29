@@ -30,40 +30,38 @@ class MainActivity : AppCompatActivity() {
 
         clickButton?.setOnClickListener {
             handler.handleEveryField(nameField, heightField, weightField, ageField)
+            resultField.visibility = View.VISIBLE
             if (!WrongName && !WrongHeight && !WrongWeight && !WrongAge) {
                 resultField.text = "Result: " + caloriesCalculator(
                     nameField.text.toString(), heightField.text.toString().toInt(),
                     weightField.text.toString().toDouble(), ageField.text.toString().toInt()
                 ).toString() + " calories/day"
-                resultField.visibility = View.VISIBLE
+
             }
+            else
+                resultField.text = "Wrong Input"
         }
 
         nameField.setOnClickListener {
             if (WrongName)
                 nameField.setText("")
             WrongName = false
-            nameField.setTextColor(Color.parseColor("#FF49454F"))
         }
         heightField.setOnClickListener {
             if (WrongHeight)
                 heightField.setText("")
             WrongHeight = false
-            heightField.setTextColor(Color.parseColor("#FF49454F"))
         }
         weightField.setOnClickListener {
             if (WrongWeight)
                 weightField.setText("")
             WrongWeight = false
-            weightField.setTextColor(Color.parseColor("#FF49454F"))
         }
         ageField.setOnClickListener {
             if (WrongAge)
                 ageField.setText("")
             WrongAge = false
-            ageField.setTextColor(Color.parseColor("#FF49454F"))
         }
-
     }
 }
 
@@ -138,7 +136,6 @@ class FieldHandler {
     }
     fun wrongField(field: TextView) {
         field.text = "Wrong input"
-        field.setTextColor(Color.parseColor("#FF0000"))
 
     }
 }
